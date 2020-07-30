@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ablogic.mongodb.course.domain.User;
+import com.ablogic.mongodb.course.dto.UserDTO;
 import com.ablogic.mongodb.course.repository.UserRepository;
 import com.ablogic.mongodb.course.services.exception.ObjectNotFoundException;
 
@@ -26,4 +27,13 @@ public class UserService {
 		
 		return user.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
 	}
+	
+	public User insertUser(User user) {
+		return userRepository.insert(user);
+	}
+	
+	public User fromDTO(UserDTO userDTO) {
+		return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail()); 
+	}
+	
 }
