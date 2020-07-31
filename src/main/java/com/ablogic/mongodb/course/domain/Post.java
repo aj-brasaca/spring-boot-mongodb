@@ -1,12 +1,15 @@
 package com.ablogic.mongodb.course.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.ablogic.mongodb.course.dto.AuthorDTO;
+import com.ablogic.mongodb.course.dto.CommentDTO;
 
 @Document
 public class Post implements Serializable {
@@ -19,6 +22,8 @@ public class Post implements Serializable {
 	private String title;
 	private String body;
 	private AuthorDTO author;
+	
+	private List<CommentDTO> listComments = new ArrayList<>();
 	
 	public Post(String id, Date date, String title, String body, AuthorDTO author) {
 		super();
@@ -67,6 +72,14 @@ public class Post implements Serializable {
 
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
+	}
+	
+	public List<CommentDTO> getListComments() {
+		return listComments;
+	}
+
+	public void setListComments(List<CommentDTO> listComments) {
+		this.listComments = listComments;
 	}
 
 	@Override
